@@ -1,0 +1,29 @@
+<configuration>
+    <appender name="std-out" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{YYYY:MM:dd HH:mm:SS} %C %blue([%thread]) %highlight(%-5level) %logger{36} .%C %M - %msg%n%n
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="std-json-appender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <!-- pattern optional if not specified take default -->
+            <!--
+            <pattern>
+                %d{YYYY:MM:dd HH:mm:SS} %C %blue([%thread]) %highlight(%-5level) %logger{36} .%C %M - %msg%n%n
+            </pattern>-->
+        </encoder>
+    </appender>
+    <root level="info">
+        <appender-ref ref="std-out"></appender-ref>
+        <appender-ref ref="std-json-appender"></appender-ref>
+    </root>
+</configuration>
+
+<!--
+https://lankydan.dev/2019/01/09/configuring-logback-with-spring-boot
+
+%d{YYYY:MM:dd HH:mm:SS} %C %blue([%thread]) %highlight(%-5level) %logger{36} .%C %M - %msg%n -->
+<!-- %d{formatdate} %C(classname)  %color[%runningthread]  %highlight with color(%-5level mean 5 character for level)
+ %logger{36} means logger message with 36 character %M message %msg message desc %n new line)-->
